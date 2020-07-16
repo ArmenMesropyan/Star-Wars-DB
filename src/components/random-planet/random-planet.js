@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SWApi } from '../../services';
+import { Loading } from '..';
 
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
