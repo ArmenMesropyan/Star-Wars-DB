@@ -13,4 +13,7 @@
     .choice .row {
         flex-direction: column-reverse;
     }
+    .choice .list-item {
+        margin-bottom: 20px;
+    }
 }

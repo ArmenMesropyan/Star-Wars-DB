@@ -1,0 +1,21 @@
+.list-item {
+    cursor: pointer;
+}
+
+.list-item .list-group-item {
+    display: flex;
+}
+
+.list-item img {
+    width: 100px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.list-group-item:hover {
+    background: #444;
+}
+
+.list-group-item:hover .list-group-item {
+    background: #444;
+}
