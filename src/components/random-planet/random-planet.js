@@ -3,35 +3,37 @@ import { SWApi } from '../../services';
 
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
-    const [planet, setPlanet] = useState({});
-    console.log('planet: ', planet);
+    const [planet, setPlanet] = useState(null);
 
     useEffect(() => {
         const updatePlanet = async() => {
-            const id = Math.floor(Math.random() * 25 + 2);
-            console.log('id: ', id);
+            const id = Math.floor((Math.random() * 25) + 2);
             const planet = await getPlanetById(id);
             setPlanet({...planet, id});
         }
 
         updatePlanet();
 
-        const timerID = setInterval(updatePlanet, 2000);
+        const timerID = setInterval(updatePlanet, 4000);
 
         return () => clearInterval(timerID);
     }, []);
+
+    if (!planet) return null;
+
+    const { name, population, diameter, rotation_period, id } = planet;
 
     return (
         <section className="random-planet mt-3">
             <h2 className="visually-hidden">Random Planet</h2>
             <div className="container">
                 <div className="card mb-3 col-md-6 col-sm-8 col-xs-12">
-                    <h3 className="card-header">Planet Name</h3>
-                    <img src="https://qph.fs.quoracdn.net/main-qimg-3bf24a3f768cfa80261311670fe1d358" alt="Planet Name"/>
+                    <h3 className="card-header">{ name }</h3>
+                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={ name }/>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Population - 10000000</li>
-                        <li className="list-group-item">Rotation Period - 26</li>
-                        <li className="list-group-item">Diameter - 12120</li>
+                        <li className="list-group-item">Population - { population }</li>
+                        <li className="list-group-item">Rotation Period - { rotation_period }</li>
+                        <li className="list-group-item">Diameter - { diameter }</li>
                     </ul>
                 </div>
             </div>
