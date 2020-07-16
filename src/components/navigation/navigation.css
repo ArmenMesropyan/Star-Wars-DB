@@ -1,9 +1,19 @@
 .nav-logo {
     display: flex;
     align-items: center;
+    flex-grow: 1;
 }
 
 .nav-logo img {
     width: 70px;
     margin-right: 15px;
+}
+
+.main-nav .container {
+    display: flex;
+}
+
+.main-nav .navbar-collapse {
+    flex-grow: 0;
+    flex-basis: 0;
 }

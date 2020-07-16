@@ -1,13 +1,13 @@
 import React from 'react';
 
 const Navigation = () => (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
         <div className="container">
             <div className="nav-logo">
                 <img src="logo.png" alt="Star Wars DB"/>
                 <a className="navbar-brand" href="#">Star Wars DB</a>
             </div>
-            <div className="collapse navbar-collapse">
+            <div className="navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
                         <a className="nav-link" href="#">People <span className="sr-only">(current)</span></a>
