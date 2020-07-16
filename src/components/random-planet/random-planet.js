@@ -4,17 +4,23 @@ import { SWApi } from '../../services';
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
     const [planet, setPlanet] = useState({});
-
-    const updatePlanet = async() => {
-        const id = Math.floor(Math.random() * 25 + 2);
-        console.log('id: ', id);
-        const planet = await getPlanetById(id);
-        setPlanet(planet)
-    }
+    console.log('planet: ', planet);
 
     useEffect(() => {
+        const updatePlanet = async() => {
+            const id = Math.floor(Math.random() * 25 + 2);
+            console.log('id: ', id);
+            const planet = await getPlanetById(id);
+            setPlanet({...planet, id});
+        }
 
+        updatePlanet();
+
+        const timerID = setInterval(updatePlanet, 2000);
+
+        return () => clearInterval(timerID);
     }, []);
+
     return (
         <section className="random-planet mt-3">
             <h2 className="visually-hidden">Random Planet</h2>
