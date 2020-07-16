@@ -1,22 +1,20 @@
 import React from 'react';
 import './app.css';
-import { Navigation, RandomPlanet, ListItems } from './components';
+import { 
+    Navigation,
+    RandomPlanet,
+    ListItems,
+    ListItem,
+    Columns
+} from './components';
 
 const App = () => (
     <>
         <Navigation />
         <RandomPlanet />
         <section className="choice mb-3">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-7 col-xs-12">
-                        <ListItems />
-                    </div>
-                    <div className="col-md-5 col-xs-12">
-                        {/* <Card /> */}
-                    </div>
-                </div>
-            </div>
+            <h2 className="visually-hidden">Select your person</h2>
+            <Columns first={<ListItems />} second={<ListItem />} />
         </section>
     </>
 );
