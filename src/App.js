@@ -1,9 +1,11 @@
 import React from 'react';
-import { Navigation } from './components';
+import './app.css';
+import { Navigation, RandomPlanet } from './components';
 
 const App = () => (
     <>
         <Navigation />
+        <RandomPlanet />
     </>
 );
 

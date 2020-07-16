@@ -1,0 +1,10 @@
+.random-planet .card {
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.random-planet img {
+    max-width: 250px;
+    border-radius: 30px;
+    margin: 30px auto;
+}
