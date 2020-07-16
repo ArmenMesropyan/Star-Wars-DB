@@ -1,6 +1,6 @@
 class SWApi {
     constructor() {
-        this.baseURl = 'https://swapi.dev/api';
+        this.baseURl = 'https://swapi.de/api';
     }
 
     async fetchData(endpoint) {

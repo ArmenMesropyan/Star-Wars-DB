@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SWApi } from '../../services';
-import { Loading } from '..';
+import { Loading, Error } from '..';
 
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
@@ -28,7 +28,7 @@ const RandomPlanet = () => {
 
     const { loading, error } = indicators;
 
-    if (error) return null;
+    if (error) return <Error />;
     if (loading) return <Loading />;
 
     const { name, population, diameter, rotation_period, id } = planet;
