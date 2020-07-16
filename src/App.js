@@ -9,10 +9,10 @@ const App = () => (
         <section className="choice mb-3">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-7">
+                    <div className="col-md-7 col-xs-12">
                         <ListItems />
                     </div>
-                    <div className="col-md-5">
+                    <div className="col-md-5 col-xs-12">
                         {/* <Card /> */}
                     </div>
                 </div>
