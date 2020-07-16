@@ -4,7 +4,7 @@ const RandomPlanet = () => (
     <section className="random-planet mt-3">
         <h2 className="visually-hidden">Random Planet</h2>
         <div className="container">
-            <div class="card mb-3">
+            <div class="card mb-3 col-md-6 col-sm-8 col-xs-12">
                 <h3 class="card-header">Planet Name</h3>
                 <img src="https://qph.fs.quoracdn.net/main-qimg-3bf24a3f768cfa80261311670fe1d358" alt="Planet Name"/>
                 <ul class="list-group list-group-flush">
