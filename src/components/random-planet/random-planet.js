@@ -5,12 +5,18 @@ import { Loading } from '..';
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
     const [planet, setPlanet] = useState(null);
+    const [indicators, setIndicator] = useState({ loading: true, error: false });
 
     useEffect(() => {
         const updatePlanet = async() => {
-            const id = Math.floor((Math.random() * 25) + 2);
-            const planet = await getPlanetById(id);
-            setPlanet({...planet, id});
+            try {
+                const id = Math.floor((Math.random() * 25) + 2);
+                const planet = await getPlanetById(id);
+                setPlanet({...planet, id});
+                setIndicator({ loading: false });
+            } catch (error) {
+                setIndicator({ error: true, loading: false })
+            }
         }
 
         updatePlanet();
@@ -20,7 +26,10 @@ const RandomPlanet = () => {
         return () => clearInterval(timerID);
     }, []);
 
-    if (!planet) return null;
+    const { loading, error } = indicators;
+
+    if (error) return null;
+    if (loading) return <Loading />;
 
     const { name, population, diameter, rotation_period, id } = planet;
 
