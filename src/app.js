@@ -11,7 +11,7 @@ import {
 import { SWApi } from './services';
 
 const App = () => {
-    const { getAllPlanets } = new SWApi();
+    const { getAllPlanets, getPlanetById } = new SWApi();
     const [itemID, setItemID] = useState(3);
 
     const onItemClicked = (id) => setItemID(id);
@@ -24,6 +24,12 @@ const App = () => {
         </ErrorBoundry>
     );
 
+    const listItem = (
+        <ErrorBoundry>
+            <ListItem itemID={itemID} getData={getPlanetById}/>
+        </ErrorBoundry>
+    );
+
     return (
         <>
             <Navigation />
@@ -33,7 +39,7 @@ const App = () => {
                 </ErrorBoundry>
                 <section className="choice mb-3">
                     <h2 className="visually-hidden">Select your person</h2>
-                    <Columns first={listItems} second={<ListItem itemID={itemID}/>} />
+                    <Columns first={listItems} second={listItem} />
                 </section>
             </main>
         </>

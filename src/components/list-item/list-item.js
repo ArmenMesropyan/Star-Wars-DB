@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Loading, Error } from '..';
 
-const ListItem = ({ itemID }) => {
-console.log('itemID: ', itemID);
+const ListItem = ({ itemID, getData }) => {
+    const [data, setData] = useState(null);
+    const [indicators, setIndicators] = useState({ loading: true, error: false });
+
+    useEffect(() => {
+        const setItem = async() => {
+            try {
+                const data = await getData(itemID);
+                setData(data);
+                setIndicators({ loading: false, error: false });
+            } catch (error) {
+                setIndicators({ loading: false, error: true });
+            }
+        }
+        
+        setItem();
+    }, [itemID]);
+
+    const { error, loading } = indicators;
+
+    if (error) return <Error />
+    if (loading) return <Loading />
+
+    const { id, name, population, diameter, gravity } = data;
+
     return (
         <div className="list-item list-group">
             <div className="list-group-item list-group-item-action">
                 <div className="list-group__img">
-                    <img src="https://qph.fs.quoracdn.net/main-qimg-3bf24a3f768cfa80261311670fe1d358" alt="Name"/>
+                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={name}/>
                 </div>
                 <div className="d-flex flex-column w-100 justify-content-between">
-                    <h3 className="mb-1">R2-D2</h3>
+                    <h3 className="mb-1">{name}</h3>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Gender: n/a</li>
-                        <li className="list-group-item">Birth Year - 33BBY</li>
-                        <li className="list-group-item">Eye Color - Red</li>
+                        <li className="list-group-item">Population: {population}</li>
+                        <li className="list-group-item">Diameter - {diameter}</li>
+                        <li className="list-group-item">Gravity - {gravity}</li>
                     </ul>
                 </div>
             </div>

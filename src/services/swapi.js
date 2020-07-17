@@ -13,12 +13,21 @@ class SWApi {
 
     getAllPlanets = async() => {
         const { results } = await this.fetchData('/planets');
-        return results;
+        return this._transformPlanets(results);
     }
 
     getPlanetById = async(id = 1) => {
         const planet = await this.fetchData(`/planets/${id}`);
-        return planet;
+        return { id: this._getID(planet.url), ...planet };
+    }
+
+    _getID(url) {
+        const regExp = /\/([0-9]*)\/$/;
+        return url.match(regExp)[1];
+    }
+
+    _transformPlanets(list) {
+        return list.map(item => ({id: this._getID(item.url), ...item}))
     }
 }
 
