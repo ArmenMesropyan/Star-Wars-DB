@@ -1,3 +1,11 @@
+
+# In this project I used
+1. - React Routing
+2. - Hooks
+3. - HOC
+4. - React patterns - children prop and render functions
+5. - Context API and component default props
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
