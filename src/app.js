@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './app.css';
 import { 
     Navigation,
     RandomPlanet,
     ListItems,
     ListItem,
-    Columns
+    Columns,
+    ErrorBoundry
 } from './components';
 import { SWApi } from './services';
 
 const App = () => {
     const { getAllPlanets } = new SWApi();
+    const [itemID, setItemID] = useState(3);
+
+    const onItemClicked = (id) => setItemID(id);
+
     const listItems = (
-        <ListItems getData={getAllPlanets}>
-            {(i) => <button>{`${i.name}`}</button>}
-        </ListItems>
+        <ErrorBoundry>
+            <ListItems getData={getAllPlanets} clicked={onItemClicked}>
+                {(i) => <button>{`${i.name}`}</button>}
+            </ListItems>
+        </ErrorBoundry>
     );
 
     return (
         <>
             <Navigation />
             <main className="main-content">
-                <RandomPlanet />
+                <ErrorBoundry>
+                    <RandomPlanet />
+                </ErrorBoundry>
                 <section className="choice mb-3">
                     <h2 className="visually-hidden">Select your person</h2>
-                    <Columns first={listItems} second={<ListItem />} />
+                    <Columns first={listItems} second={<ListItem itemID={itemID}/>} />
                 </section>
             </main>
         </>

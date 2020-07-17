@@ -5,3 +5,4 @@ export { default as ListItems } from './list-items';
 export { default as ListItem } from './list-item';
 export { default as Loading } from './loading';
 export { default as Error } from './error';
+export { default as ErrorBoundry } from './error-boundry';

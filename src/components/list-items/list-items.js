@@ -22,7 +22,6 @@ const ListItems = ({ getData, clicked, children }) => {
 
     if (error || list.detail) return <Error />
     if (loading) return <Loading />
-    console.log('list: ', list);
 
     const elements = list.map(({ id, ...item }, index) => {
         const elem = children(item);
