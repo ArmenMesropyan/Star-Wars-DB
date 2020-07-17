@@ -5,6 +5,7 @@ import {
     RandomPlanet,
     ListItems,
     ListItem,
+    Record,
     Columns,
     ErrorBoundry
 } from './components';
@@ -26,7 +27,10 @@ const App = () => {
 
     const listItem = (
         <ErrorBoundry>
-            <ListItem itemID={itemID} getData={getPlanetById}/>
+            <ListItem itemID={itemID} getData={getPlanetById}>
+                <Record field="diameter" label="Diameter"/>
+                <Record field="gravity" label="Gravity"/>
+            </ListItem>
         </ErrorBoundry>
     );
 

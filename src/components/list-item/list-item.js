@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Loading, Error } from '..';
 
-const ListItem = ({ itemID, getData }) => {
+const Record = ({ item, field, label }) => (
+    <li className="list-group-item">{`${label}: ${item[field]}`}</li>
+);
+
+const ListItem = ({ itemID, getData, children }) => {
     const [data, setData] = useState(null);
     const [indicators, setIndicators] = useState({ loading: true, error: false });
 
@@ -26,7 +30,7 @@ const ListItem = ({ itemID, getData }) => {
     if (error) return <Error />
     if (loading) return <Loading />
 
-    const { id, name, population, diameter, gravity } = data;
+    const { id, name } = data;
 
     return (
         <div className="list-item list-group">
@@ -35,11 +39,11 @@ const ListItem = ({ itemID, getData }) => {
                     <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={name}/>
                 </div>
                 <div className="d-flex flex-column w-100 justify-content-between">
-                    <h3 className="mb-1">{name}</h3>
+                    <h3 className="mb-1">{name || 'Unknown'}</h3>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Population: {population}</li>
-                        <li className="list-group-item">Diameter - {diameter}</li>
-                        <li className="list-group-item">Gravity - {gravity}</li>
+                        { React.Children.map(children, (child) => {
+                            return React.cloneElement(child, { item: data });
+                        }) }
                     </ul>
                 </div>
             </div>
@@ -47,4 +51,4 @@ const ListItem = ({ itemID, getData }) => {
     )
 }
 
-export default ListItem;
+export { ListItem, Record };
