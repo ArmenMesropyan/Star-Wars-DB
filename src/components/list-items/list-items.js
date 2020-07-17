@@ -4,8 +4,9 @@ import { Loading, Error } from '..';
 const ListItems = ({ getData, clicked, children }) => {
     const [list, setList] = useState({});
     const [indicators, setIndicators] = useState({ loading: true, error: false });
+
     useEffect(() => {
-        const setData = async () => {
+        const setData = async() => {
             try {
                 const list = await getData();
                 setList(list);
@@ -23,10 +24,26 @@ const ListItems = ({ getData, clicked, children }) => {
     if (error || list.detail) return <Error />
     if (loading) return <Loading />
 
-    const elements = list.map(({ id, ...item }, index) => {
+    const setActiveItem = (index) => {
+        list.forEach(item => item.active = false);
+
+        const activeItem = {...list[index], active: true};
+
+        const newList = [...list];
+        newList[index] = activeItem;
+
+        setList(newList);
+    }
+
+    const elements = list.map(({ id, active, ...item }, index) => {
+        console.log('active: ', active);
         const elem = children(item);
+        const classes = `list-group-item list-group-item-action ${active ? 'active': ''}`;
         return (
-            <li className="list-group-item list-group-item-action" key={id || index} onClick={() => clicked(id)}>
+            <li className={classes} key={id || index} onClick={() => {
+                clicked(id);
+                setActiveItem(index);
+            }}>
                 {elem}
             </li>
         )

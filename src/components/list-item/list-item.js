@@ -8,9 +8,10 @@ const ListItem = ({ itemID, getData }) => {
     useEffect(() => {
         const setItem = async() => {
             try {
+                setIndicators({ loading: true });
                 const data = await getData(itemID);
                 setData(data);
-                setIndicators({ loading: false, error: false });
+                setIndicators({ loading: false });
             } catch (error) {
                 setIndicators({ loading: false, error: true });
             }
@@ -20,6 +21,7 @@ const ListItem = ({ itemID, getData }) => {
     }, [itemID]);
 
     const { error, loading } = indicators;
+    console.log('loading: ', loading);
 
     if (error) return <Error />
     if (loading) return <Loading />
