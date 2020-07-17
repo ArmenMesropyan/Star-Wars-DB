@@ -21,6 +21,10 @@ class SWApi {
         return { id: this._getID(planet.url), ...planet };
     }
 
+    getImage(type, id) {
+        return `https://starwars-visualguide.com/assets/img/${type}/${id}.jpg`
+    }
+
     _getID(url) {
         const regExp = /\/([0-9]*)\/$/;
         return url.match(regExp)[1];

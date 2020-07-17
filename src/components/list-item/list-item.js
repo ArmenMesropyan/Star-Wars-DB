@@ -5,7 +5,7 @@ const Record = ({ item, field, label }) => (
     <li className="list-group-item">{`${label}: ${item[field]}`}</li>
 );
 
-const ListItem = ({ itemID, getData, children }) => {
+const ListItem = ({ itemID, getData, getImage, children }) => {
     const [data, setData] = useState(null);
     const [indicators, setIndicators] = useState({ loading: true, error: false });
 
@@ -25,7 +25,6 @@ const ListItem = ({ itemID, getData, children }) => {
     }, [itemID]);
 
     const { error, loading } = indicators;
-    console.log('loading: ', loading);
 
     if (error) return <Error />
     if (loading) return <Loading />
@@ -36,7 +35,7 @@ const ListItem = ({ itemID, getData, children }) => {
         <div className="list-item list-group">
             <div className="list-group-item list-group-item-action">
                 <div className="list-group__img">
-                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={name}/>
+                    <img src={getImage(id)} alt={name}/>
                 </div>
                 <div className="d-flex flex-column w-100 justify-content-between">
                     <h3 className="mb-1">{name || 'Unknown'}</h3>

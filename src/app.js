@@ -12,7 +12,7 @@ import {
 import { SWApi } from './services';
 
 const App = () => {
-    const { getAllPlanets, getPlanetById } = new SWApi();
+    const { getAllPlanets, getPlanetById, getImage } = new SWApi();
     const [itemID, setItemID] = useState(3);
 
     const onItemClicked = (id) => setItemID(id);
@@ -27,7 +27,9 @@ const App = () => {
 
     const listItem = (
         <ErrorBoundry>
-            <ListItem itemID={itemID} getData={getPlanetById}>
+            <ListItem itemID={itemID} 
+                      getData={getPlanetById}
+                      getImage={(id) => getImage('planets', id)}>
                 <Record field="diameter" label="Diameter"/>
                 <Record field="gravity" label="Gravity"/>
             </ListItem>
