@@ -12,13 +12,13 @@ class SWApi {
     }
 
     getAllPlanets = async() => {
-        const planets = await this.fetchData('/planets');
-        return planets;
+        const { results } = await this.fetchData('/planets');
+        return results;
     }
 
     getPlanetById = async(id = 1) => {
-        const { results } = await this.fetchData(`/planets/${id}`);
-        return results;
+        const planet = await this.fetchData(`/planets/${id}`);
+        return planet;
     }
 }
 

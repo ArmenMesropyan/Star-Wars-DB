@@ -8,14 +8,11 @@ const RandomPlanet = () => {
     const [indicators, setIndicator] = useState({ loading: true, error: false });
 
     useEffect(() => {
-        let timerID;
-
         const updatePlanet = async() => {
             try {
                 const id = Math.floor((Math.random() * 25) + 2);
                 const planet = await getPlanetById(id);
-                setPlanet({...planet, id});
-                timerID = setInterval(updatePlanet, 4000);
+                setPlanet({id, ...planet});
                 setIndicator({ loading: false });
             } catch (error) {
                 setIndicator({ error: true, loading: false })
@@ -23,6 +20,8 @@ const RandomPlanet = () => {
         }
 
         updatePlanet();
+
+        const timerID = setInterval(updatePlanet, 4000);
         
         return () => clearInterval(timerID);
     }, []);

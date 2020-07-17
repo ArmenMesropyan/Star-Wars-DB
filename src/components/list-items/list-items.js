@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Loading, Error } from '..';
 
-const ListItems = () => (
-    <div className="list-group">
-        <button className="list-group-item list-group-item-action active">
-            Luke SkyWalker (1988Y)
-        </button>
-        <button className="list-group-item list-group-item-action">
-            C-3PO (338BBY)
-        </button>
-    </div>
-)
+const ListItems = ({ getData, clicked, children }) => {
+    const [list, setList] = useState({});
+    const [indicators, setIndicators] = useState({ loading: true, error: false });
+    useEffect(() => {
+        const setData = async () => {
+            try {
+                const list = await getData();
+                setList(list);
+                setIndicators({ loading: false, error: false });
+            } catch (error) {
+                setIndicators({ loading: false, error: true });
+            }
+        }
+        
+        setData();
+    }, []);
+    
+    const { loading, error } = indicators;
+
+    if (error || list.detail) return <Error />
+    if (loading) return <Loading />
+    console.log('list: ', list);
+
+    const elements = list.map(({ id, ...item }, index) => {
+        const elem = children(item);
+        return (
+            <li className="list-group-item list-group-item-action" key={id || index} onClick={() => clicked(id)}>
+                {elem}
+            </li>
+        )
+    });
+
+    return (
+        <ul className="list-group">
+            { elements }
+        </ul>
+    )
+}
 
 export default ListItems;

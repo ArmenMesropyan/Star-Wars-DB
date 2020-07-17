@@ -1,3 +1,14 @@
-.list-group-item:focus {
+.list-group-item:focus,
+.list-group-item button:focus {
     outline: none;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item button {
+    background: none;
+    border: none;
+    color: #fff;
 }
