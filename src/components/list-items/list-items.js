@@ -1,42 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Loading, Error } from '..';
+import { Loading, Error, ErrorBoundry } from '..';
 
-const ListItems = ({ getData, clicked, children }) => {
-    const [list, setList] = useState({});
-    const [indicators, setIndicators] = useState({ loading: true, error: false });
-
-    useEffect(() => {
-        const setData = async() => {
-            try {
-                const list = await getData();
-                setList(list);
-                setIndicators({ loading: false, error: false });
-            } catch (error) {
-                setIndicators({ loading: false, error: true });
-            }
-        }
-        
-        setData();
-    }, []);
-    
-    const { loading, error } = indicators;
-
-    if (error || list.detail) return <Error />
-    if (loading) return <Loading />
-
+const ListItems = ({ getData, clicked, children, data, setData }) => {
     const setActiveItem = (index) => {
-        list.forEach(item => item.active = false);
+        data.forEach(item => item.active = false);
 
-        const activeItem = {...list[index], active: true};
+        const activeItem = {...data[index], active: true};
 
-        const newList = [...list];
+        const newList = [...data];
         newList[index] = activeItem;
 
-        setList(newList);
+        setData(newList);
     }
 
-    const elements = list.map(({ id, active, ...item }, index) => {
-        console.log('active: ', active);
+    const elements = data.map(({ id, active, ...item }, index) => {
         const elem = children(item);
         const classes = `list-group-item list-group-item-action ${active ? 'active': ''}`;
         return (
@@ -53,6 +30,37 @@ const ListItems = ({ getData, clicked, children }) => {
         <ul className="list-group">
             { elements }
         </ul>
+    )
+}
+
+const withData = (View, getData) => (props) => {
+    const [data, setData] = useState({});
+    const [indicators, setIndicators] = useState({ loading: true, error: false });
+
+    useEffect(() => {
+        const updateData = async() => {
+            try {
+                const data = await getData();
+                setData(data);
+                setIndicators({ loading: false, error: false });
+            } catch (error) {
+                console.log(error);
+                setIndicators({ loading: false, error: true });
+            }
+        }
+        
+        updateData();
+    }, []);
+    
+    const { loading, error } = indicators;
+
+    if (error || data.detail) return <Error />
+    if (loading) return <Loading />
+
+    return (
+        <ErrorBoundry>
+            <View {...props} data={data} setData={setData}/>
+        </ErrorBoundry>
     )
 }
 

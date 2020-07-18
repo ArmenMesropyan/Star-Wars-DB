@@ -18,11 +18,9 @@ const App = () => {
     const onItemClicked = (id) => setItemID(id);
 
     const listItems = (
-        <ErrorBoundry>
-            <ListItems getData={getAllPlanets} clicked={onItemClicked}>
-                {(i) => <button>{`${i.name}`}</button>}
-            </ListItems>
-        </ErrorBoundry>
+        <ListItems getData={getAllPlanets} clicked={onItemClicked}>
+            {(i) => <button>{`${i.name}`}</button>}
+        </ListItems>
     );
 
     const listItem = (
