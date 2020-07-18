@@ -6,8 +6,9 @@ import {
     PlanetList,
     PeopleList,
     StarshipList,
-    ListItem,
-    Record,
+    PlanetDetail,
+    PeopleDetail,
+    StarshipsDetail,
     Columns,
     ErrorBoundry
 } from './components';
@@ -34,14 +35,11 @@ const App = () => {
     );
 
     const listItem = (
-        <ErrorBoundry>
-            <ListItem itemID={itemID} 
-                      getData={getPlanetById}
-                      getImage={(id) => getImage('planets', id)}>
-                <Record field="diameter" label="Diameter"/>
-                <Record field="gravity" label="Gravity"/>
-            </ListItem>
-        </ErrorBoundry>
+        <>
+            <PlanetDetail itemID={itemID}/>
+            <PeopleDetail itemID={itemID}/>
+            <StarshipsDetail itemID={itemID}/>
+        </>
     );
 
     return (

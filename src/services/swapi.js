@@ -31,6 +31,16 @@ class SWApi {
         return { id: this._getID(planet.url), ...planet };
     }
 
+    getPersonById = async(id = 1) => {
+        const person = await this.fetchData(`/people/${id}`);
+        return { id: this._getID(person.url), ...person };
+    }
+
+    getStarshipById = async(id = 1) => {
+        const starship = await this.fetchData(`/starships/${id}`);
+        return { id: this._getID(starship.url), ...starship };
+    }
+
     getImage(type, id) {
         return `https://starwars-visualguide.com/assets/img/${type}/${id}.jpg`
     }
