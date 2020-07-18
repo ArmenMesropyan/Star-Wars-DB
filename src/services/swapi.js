@@ -13,7 +13,17 @@ class SWApi {
 
     getAllPlanets = async() => {
         const { results } = await this.fetchData('/planets');
-        return this._transformPlanets(results);
+        return this._transformData(results);
+    }
+
+    getAllPeople = async() => {
+        const { results } = await this.fetchData('/people');
+        return this._transformData(results);
+    }
+
+    getAllStarships = async() => {
+        const { results } = await this.fetchData('/starships');
+        return this._transformData(results);
     }
 
     getPlanetById = async(id = 1) => {
@@ -30,7 +40,7 @@ class SWApi {
         return url.match(regExp)[1];
     }
 
-    _transformPlanets(list) {
+    _transformData(list) {
         return list.map(item => ({id: this._getID(item.url), ...item}))
     }
 }

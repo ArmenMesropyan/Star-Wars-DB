@@ -3,7 +3,9 @@ import './app.css';
 import { 
     Navigation,
     RandomPlanet,
-    ListItems,
+    PlanetList,
+    PeopleList,
+    StarshipList,
     ListItem,
     Record,
     Columns,
@@ -18,9 +20,17 @@ const App = () => {
     const onItemClicked = (id) => setItemID(id);
 
     const listItems = (
-        <ListItems getData={getAllPlanets} clicked={onItemClicked}>
-            {(i) => <button>{`${i.name}`}</button>}
-        </ListItems>
+        <>
+            <PlanetList clicked={onItemClicked}>
+                {(i) => <button>{`${i.name}`}</button>}
+            </PlanetList>
+            <PeopleList clicked={onItemClicked}>
+                {(i) => <button>{`${i.name}`}</button>}
+            </PeopleList>
+            <StarshipList clicked={onItemClicked}>
+                {(i) => <button>{`${i.name}`}</button>}
+            </StarshipList>
+        </>
     );
 
     const listItem = (
