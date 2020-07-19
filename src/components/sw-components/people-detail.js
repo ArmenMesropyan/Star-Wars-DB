@@ -1,16 +1,16 @@
 import React from 'react';
 import { ListItem, Record, ErrorBoundry, withSwapiAPI } from '..';
 
-const PlanetDetail = ({ itemID, swapiService: { getPlanetById, getImage } }) => (
+const PeopleDetail = ({ itemID, swapiService: { getPersonById, getImage } }) => (
     <ErrorBoundry>
         <ListItem itemID={itemID}
-            getData={getPlanetById}
-            getImage={(id) => getImage('planets', id)}>
-                <Record label="Climate" field="climate"/>
-                <Record label="Diameter" field="diameter"/>
-                <Record label="Gravity" field="gravity"/>
+            getData={getPersonById}
+            getImage={(id) => getImage('characters', id)}>
+                <Record label="Birth Year" field="birth_year"/>
+                <Record label="Gender" field="gender"/>
+                <Record label="Eye Color" field="eye_color"/>
         </ListItem>
     </ErrorBoundry>
 );
 
-export default withSwapiAPI(PlanetDetail);
+export default withSwapiAPI(PeopleDetail);
