@@ -1,7 +1,6 @@
 import React from 'react';
 import { withData, ListItems } from '..';
 import { SWApi } from '../../services';
-import { ListItem } from '../list-item';
 
 const { getAllPlanets, getAllPeople, getAllStarships } = new SWApi();
 

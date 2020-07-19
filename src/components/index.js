@@ -6,7 +6,7 @@ export { ListItem, Record } from './list-item';
 export { default as Loading } from './loading';
 export { default as Error } from './error';
 export { default as ErrorBoundry } from './error-boundry';
-export { withData } from './hoc-helpers';
+export { withData, withSwapiAPI } from './hoc-helpers';
 export { 
     PlanetList, PeopleList, StarshipList, 
     PlanetDetail, PeopleDetail, StarshipsDetail 
