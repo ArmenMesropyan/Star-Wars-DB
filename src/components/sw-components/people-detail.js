@@ -1,11 +1,9 @@
 import React from 'react';
 import { ListItem, Record, ErrorBoundry, withSwapiAPI } from '..';
 
-const PeopleDetail = ({ itemID, swapiService: { getPersonById, getImage } }) => (
+const PeopleDetail = (props) => (
     <ErrorBoundry>
-        <ListItem itemID={itemID}
-            getData={getPersonById}
-            getImage={(id) => getImage('characters', id)}>
+        <ListItem {...props}>
                 <Record label="Birth Year" field="birth_year"/>
                 <Record label="Gender" field="gender"/>
                 <Record label="Eye Color" field="eye_color"/>
@@ -13,4 +11,9 @@ const PeopleDetail = ({ itemID, swapiService: { getPersonById, getImage } }) => 
     </ErrorBoundry>
 );
 
-export default withSwapiAPI(PeopleDetail);
+const mapServiceToProps = ({ getPersonById, getImage }) => ({
+    getData: getPersonById,
+    getImage: (id) => getImage('characters', id),
+});
+
+export default withSwapiAPI(PeopleDetail, mapServiceToProps);

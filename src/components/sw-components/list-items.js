@@ -1,8 +1,5 @@
 import React from 'react';
-import { withData, ListItems } from '..';
-import { SWApi } from '../../services';
-
-const { getAllPlanets, getAllPeople, getAllStarships } = new SWApi();
+import { withData, withSwapiAPI, ListItems } from '..';
 
 const withChildren = (View, render) => {
     return (props) => (
@@ -14,17 +11,35 @@ const withChildren = (View, render) => {
 
 const renderName = ({name}) => <button>{name}</button>
 
-const PlanetList = withData(
-    withChildren(ListItems, renderName),
-    getAllPlanets
+const mapPlanetDataToProps = (service) => ({
+    getData: service.getAllPlanets
+})
+
+const mapPeopleDataToProps = (service) => ({
+    getData: service.getAllPeople
+})
+
+const mapStarshipDataToProps = (service) => ({
+    getData: service.getAllStarships
+})
+
+const PlanetList = withSwapiAPI(
+    withData(
+        withChildren(ListItems, renderName)
+    ),
+    mapPlanetDataToProps
 )
-const PeopleList = withData(
-    withChildren(ListItems, renderName),
-    getAllPeople
+const PeopleList = withSwapiAPI(
+    withData(
+        withChildren(ListItems, renderName)
+    ),
+    mapPeopleDataToProps
 )
-const StarshipList = withData(
-    withChildren(ListItems, renderName),
-    getAllStarships
+const StarshipList = withSwapiAPI(
+    withData(
+        withChildren(ListItems, renderName)
+    ),
+    mapStarshipDataToProps
 )
 
 export { PlanetList, PeopleList, StarshipList };

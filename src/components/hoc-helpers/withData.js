@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Loading, Error, ErrorBoundry } from '..';
 
-const withData = (View, getData) => (props) => {
+const withData = (View) => (props) => {
     const [data, setData] = useState({});
     const [indicators, setIndicators] = useState({ loading: true, error: false });
 
     useEffect(() => {
         const updateData = async() => {
             try {
-                const data = await getData();
+                const data = await props.getData();
                 setData(data);
                 setIndicators({ loading: false, error: false });
             } catch (error) {

@@ -2,11 +2,9 @@ import React from 'react';
 import { ListItem, Record, ErrorBoundry, withSwapiAPI } from '..';
 console.log('withSwapiAPI: ', withSwapiAPI);
 
-const PlanetDetail = ({ itemID, swapiService: { getPlanetById, getImage } }) => (
+const PlanetDetail = (props) => (
     <ErrorBoundry>
-        <ListItem itemID={itemID}
-            getData={getPlanetById}
-            getImage={(id) => getImage('planets', id)}>
+        <ListItem {...props}>
                 <Record label="Climate" field="climate"/>
                 <Record label="Diameter" field="diameter"/>
                 <Record label="Gravity" field="gravity"/>
@@ -14,4 +12,9 @@ const PlanetDetail = ({ itemID, swapiService: { getPlanetById, getImage } }) => 
     </ErrorBoundry>
 );
 
-export default withSwapiAPI(PlanetDetail);
+const mapServiceToProps = ({ getPlanetById, getImage }) => ({
+    getData: getPlanetById,
+    getImage: (id) => getImage('planets', id),
+});
+
+export default withSwapiAPI(PlanetDetail, mapServiceToProps);
