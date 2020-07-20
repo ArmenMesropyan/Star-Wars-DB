@@ -11,5 +11,5 @@ export {
     PlanetList, PeopleList, StarshipList, 
     PlanetDetail, PeopleDetail, StarshipDetail 
 } from './sw-components';
-export { SwapiConsumer, SwapiProvider } from './swapi-context';
+export { SwapiContext } from './swapi-context';
 export { PeoplePage, PlanetPage, StarshipPage } from './pages';

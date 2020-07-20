@@ -1,1 +1,1 @@
-export { SwapiConsumer, SwapiProvider } from './swapi-context';
+export { SwapiContext } from './swapi-context';

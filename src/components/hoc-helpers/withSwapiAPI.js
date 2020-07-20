@@ -1,16 +1,11 @@
-import React from 'react';
-import { SwapiConsumer } from '..';
+import React, { useContext } from 'react';
+import { SwapiContext } from '..';
 
-const withSwapiAPI = (View, mapServiceToProps) => {
-    return (props) => (
-        <SwapiConsumer>
-            {(swapiService) => {
-                const swapiProps = mapServiceToProps(swapiService);
-                return (
-                    <View {...props} {...swapiProps}/>
-                )
-            }}
-        </SwapiConsumer>
+const withSwapiAPI = (View, mapServiceToProps) => (props) => {
+    const swapiService = useContext(SwapiContext)
+    const swapiProps = mapServiceToProps(swapiService);
+    return (
+        <View {...props} {...swapiProps}/>
     )
 }
 

@@ -7,7 +7,7 @@ import {
     PlanetPage,
     StarshipPage,
     ErrorBoundry,
-    SwapiProvider,
+    SwapiContext,
 } from './components';
 import { SWApi } from './services';
 
@@ -16,7 +16,7 @@ const App = () => {
 
     return (
         <ErrorBoundry>
-            <SwapiProvider value={swAPI}>
+            <SwapiContext.Provider value={swAPI}>
                 <Navigation />
                 <main className="main-content">
                     <RandomPlanet />
@@ -24,7 +24,7 @@ const App = () => {
                     <PlanetPage />
                     <StarshipPage />
                 </main>
-            </SwapiProvider>
+            </SwapiContext.Provider>
         </ErrorBoundry>
     )
 };
