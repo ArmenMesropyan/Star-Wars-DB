@@ -3,13 +3,9 @@ import './app.css';
 import { 
     Navigation,
     RandomPlanet,
-    PlanetList,
-    PeopleList,
-    StarshipList,
-    PlanetDetail,
-    PeopleDetail,
-    StarshipsDetail,
-    Columns,
+    PeoplePage,
+    PlanetPage,
+    StarshipPage,
     ErrorBoundry,
     SwapiProvider,
 } from './components';
@@ -17,41 +13,19 @@ import { SWApi } from './services';
 
 const App = () => {
     const swAPI = new SWApi();
-    const [itemID, setItemID] = useState(3);
-
-    const onItemClicked = (id) => setItemID(id);
-
-    const listItems = (
-        <>
-            <PlanetList clicked={onItemClicked}/>
-            <PeopleList clicked={onItemClicked}/>
-            <StarshipList clicked={onItemClicked}/>
-        </>
-    );
-
-    const listItem = (
-        <>
-            <PlanetDetail itemID={itemID}/>
-            <PeopleDetail itemID={itemID}/>
-            <StarshipsDetail itemID={itemID}/>
-        </>
-    );
 
     return (
-        <>
+        <ErrorBoundry>
             <SwapiProvider value={swAPI}>
                 <Navigation />
                 <main className="main-content">
-                    <ErrorBoundry>
-                        <RandomPlanet />
-                    </ErrorBoundry>
-                    <section className="choice mb-3">
-                        <h2 className="visually-hidden">Select your person</h2>
-                        <Columns first={listItems} second={listItem} />
-                    </section>
+                    <RandomPlanet />
+                    <PeoplePage />
+                    <PlanetPage />
+                    <StarshipPage />
                 </main>
             </SwapiProvider>
-        </>
+        </ErrorBoundry>
     )
 };
 

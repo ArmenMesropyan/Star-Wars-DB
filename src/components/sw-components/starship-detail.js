@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListItem, Record, ErrorBoundry, withSwapiAPI } from '..';
 
-const StarshipsDetail = (props) => (
+const StarshipDetail = (props) => (
     <ErrorBoundry>
         <ListItem {...props}>
             <Record label="Consumables" field="consumables"/>
@@ -16,4 +16,4 @@ const mapServiceToProps = ({ getStarshipById, getImage }) => ({
     getImage: (id) => getImage('starships', id),
 });
 
-export default withSwapiAPI(StarshipsDetail, mapServiceToProps);
+export default withSwapiAPI(StarshipDetail, mapServiceToProps);

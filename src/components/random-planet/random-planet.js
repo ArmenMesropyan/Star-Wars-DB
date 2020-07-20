@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SWApi } from '../../services';
-import { Loading, Error } from '..';
+import { Loading, Error, ErrorBoundry } from '..';
 
 const RandomPlanet = () => {
     const { getPlanetById } = new SWApi();
@@ -34,20 +34,22 @@ const RandomPlanet = () => {
     const { name, population, diameter, rotation_period, id } = planet;
 
     return (
-        <section className="random-planet mt-3">
-            <h2 className="visually-hidden">Random Planet</h2>
-            <div className="container">
-                <div className="card mb-3 col-md-6 col-sm-8 col-xs-12">
-                    <h3 className="card-header">{ name }</h3>
-                    <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={ name }/>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Population - { population }</li>
-                        <li className="list-group-item">Rotation Period - { rotation_period }</li>
-                        <li className="list-group-item">Diameter - { diameter }</li>
-                    </ul>
+        <ErrorBoundry>
+            <section className="random-planet mt-3">
+                <h2 className="visually-hidden">Random Planet</h2>
+                <div className="container">
+                    <div className="card mb-3 col-md-6 col-sm-8 col-xs-12">
+                        <h3 className="card-header">{ name }</h3>
+                        <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt={ name }/>
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">Population - { population }</li>
+                            <li className="list-group-item">Rotation Period - { rotation_period }</li>
+                            <li className="list-group-item">Diameter - { diameter }</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </ErrorBoundry>
     )
 }
 
