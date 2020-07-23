@@ -25,7 +25,9 @@ const App = () => {
                         <RandomPlanet />
                         <Switch>
                             <Route path='/people/:id?' component={PeoplePage} exact/>
+
                             <Route path='/planets/:id?' component={PlanetPage} exact/>
+
                             <Route path='/starships/' component={StarshipPage} exact/>
                             <Route path='/starships/:id' render={({ match }) => {
                                 const { id } = match.params;
