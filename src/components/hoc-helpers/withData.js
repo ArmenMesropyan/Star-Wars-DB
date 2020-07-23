@@ -4,21 +4,18 @@ import { Loading, Error, ErrorBoundry } from '..';
 const withData = (View) => (props) => {
     const [data, setData] = useState({});
     const [indicators, setIndicators] = useState({ loading: true, error: false });
-
-    useEffect(() => {
-        const updateData = async() => {
-            try {
-                const data = await props.getData();
-                setData(data);
-                setIndicators({ loading: false, error: false });
-            } catch (error) {
-                console.log(error);
-                setIndicators({ loading: false, error: true });
-            }
+    const updateData = async() => {
+        try {
+            const data = await props.getData();
+            setData(data);
+            setIndicators({ loading: false, error: false });
+        } catch (error) {
+            console.log(error);
+            setIndicators({ loading: false, error: true });
         }
-        
-        updateData();
-    }, []);
+    }
+
+    useEffect(updateData, []);
     
     const { loading, error } = indicators;
 

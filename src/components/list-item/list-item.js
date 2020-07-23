@@ -22,7 +22,7 @@ const ListItem = ({ itemID, getData, getImage, children }) => {
         }
         
         setItem();
-    }, [itemID]);
+    }, [itemID, getData]);
 
     const { error, loading } = indicators;
 

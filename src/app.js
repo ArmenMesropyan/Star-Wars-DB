@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './app.css';
 import { 
     Navigation,
@@ -10,6 +10,7 @@ import {
     SwapiContext,
 } from './components';
 import { SWApi } from './services';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const App = () => {
     const swAPI = new SWApi();
@@ -17,13 +18,15 @@ const App = () => {
     return (
         <ErrorBoundry>
             <SwapiContext.Provider value={swAPI}>
-                <Navigation />
-                <main className="main-content">
-                    <RandomPlanet />
-                    <PeoplePage />
-                    <PlanetPage />
-                    <StarshipPage />
-                </main>
+                <Router>
+                    <Navigation />
+                    <main className="main-content">
+                        <RandomPlanet />
+                        <Route path='/people' component={PeoplePage}/>
+                        <Route path='/planets' component={PlanetPage}/>
+                        <Route path='/starships' component={StarshipPage}/>
+                    </main>
+                </Router>
             </SwapiContext.Provider>
         </ErrorBoundry>
     )
