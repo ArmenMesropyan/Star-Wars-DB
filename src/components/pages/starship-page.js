@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     StarshipList,
-    StarshipDetail,
-    Columns,
     ErrorBoundry,
 } from '..';
+import { withRouter } from 'react-router-dom';
 
-const StarshipPage = () => {
+const StarshipPage = ({ history }) => {
     return (
         <ErrorBoundry>
             <section className="choice mb-3">
                 <h2 className="visually-hidden">Select your starship</h2>
                 <div className="container">
-                    <StarshipList clicked={(id) => console.log(id)}/>
+                    <StarshipList clicked={(id) => history.push(id)}/>
                 </div>
             </section>
         </ErrorBoundry>
     )
 };
 
-export default StarshipPage;
+export default withRouter(StarshipPage);

@@ -11,13 +11,13 @@ const Navigation = () => (
             <div className="navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
-                        <Link className="nav-link" to="/people">People <span className="sr-only">(current)</span></Link>
+                        <Link className="nav-link" to="/people/">People <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/planets">Planets</Link>
+                        <Link className="nav-link" to="/planets/">Planets</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/starships">Starships</Link>
+                        <Link className="nav-link" to="/starships/">Starships</Link>
                     </li>
                 </ul>
             </div>
