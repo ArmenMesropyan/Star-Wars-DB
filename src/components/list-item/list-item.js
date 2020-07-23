@@ -32,21 +32,23 @@ const ListItem = ({ itemID, getData, getImage, children }) => {
     const { id, name } = data;
 
     return (
-        <div className="list-item list-group">
-            <div className="list-group-item list-group-item-action">
-                <div className="list-group__img">
-                    <img src={getImage(id)} alt={name}/>
-                </div>
-                <div className="d-flex flex-column w-100 justify-content-between">
-                    <h3 className="mb-1">{name || 'Unknown'}</h3>
-                    <ul className="list-group list-group-flush">
-                        { React.Children.map(children, (child) => {
-                            return React.cloneElement(child, { item: data });
-                        }) }
-                    </ul>
+        <section className="list-items container">
+            <div className="list-item list-group">
+                <div className="list-group-item list-group-item-action">
+                    <div className="list-group__img">
+                        <img src={getImage(id)} alt={name}/>
+                    </div>
+                    <div className="d-flex flex-column w-100 justify-content-between">
+                        <h3 className="mb-1">{name || 'Unknown'}</h3>
+                        <ul className="list-group list-group-flush">
+                            { React.Children.map(children, (child) => {
+                                return React.cloneElement(child, { item: data });
+                            }) }
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

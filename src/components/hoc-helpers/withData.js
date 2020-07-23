@@ -15,7 +15,9 @@ const withData = (View) => (props) => {
         }
     }
 
-    useEffect(updateData, []);
+    useEffect(() => {
+        updateData();
+    }, []);
     
     const { loading, error } = indicators;
 

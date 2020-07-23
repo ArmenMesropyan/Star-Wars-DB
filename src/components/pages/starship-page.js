@@ -7,17 +7,13 @@ import {
 } from '..';
 
 const StarshipPage = () => {
-    const [itemID, setItemID] = useState(3);
-
-    const onItemClicked = (id) => setItemID(id);
-
     return (
         <ErrorBoundry>
             <section className="choice mb-3">
                 <h2 className="visually-hidden">Select your starship</h2>
-                <Columns
-                    first={<StarshipList clicked={onItemClicked}/>}
-                    second={<StarshipDetail itemID={itemID}/>} />
+                <div className="container">
+                    <StarshipList clicked={(id) => console.log(id)}/>
+                </div>
             </section>
         </ErrorBoundry>
     )
