@@ -5,7 +5,7 @@ const Record = ({ item, field, label }) => (
     <li className="list-group-item">{`${label}: ${item[field]}`}</li>
 );
 
-const ListItem = ({ itemID, getData, getImage, children }) => {
+const ListItem = ({ itemID = 1, getData, getImage, children }) => {
     const [data, setData] = useState(null);
     const [indicators, setIndicators] = useState({ loading: true, error: false });
 
