@@ -22,9 +22,9 @@ const App = () => {
                     <Navigation />
                     <main className="main-content">
                         <RandomPlanet />
-                        <Route path='/people' component={PeoplePage}/>
-                        <Route path='/planets' component={PlanetPage}/>
-                        <Route path='/starships' component={StarshipPage}/>
+                        <Route path='/people' component={PeoplePage} exact/>
+                        <Route path='/planets' component={PlanetPage} exact/>
+                        <Route path='/starships' component={StarshipPage} exact/>
                     </main>
                 </Router>
             </SwapiContext.Provider>

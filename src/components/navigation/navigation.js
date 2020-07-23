@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navigation = () => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
         <div className="container">
             <div className="nav-logo">
                 <img src="logo.png" alt="Star Wars DB"/>
-                <a className="navbar-brand" href="#">Star Wars DB</a>
+                <Link className="navbar-brand" to="/">Star Wars DB</Link>
             </div>
             <div className="navbar-collapse">
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">People <span className="sr-only">(current)</span></a>
+                        <Link className="nav-link" to="/people">People <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Planets</a>
+                        <Link className="nav-link" to="/planets">Planets</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Starships</a>
+                        <Link className="nav-link" to="/starships">Starships</Link>
                     </li>
                 </ul>
             </div>
