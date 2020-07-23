@@ -5,7 +5,7 @@ const Navigation = () => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
         <div className="container">
             <div className="nav-logo">
-                <img src={`${process.env.PUBLIC_URL}'/img/logo.png`} alt="Star Wars DB"/>
+                <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Star Wars DB"/>
                 <Link className="navbar-brand" to="/">Star Wars DB</Link>
             </div>
             <div className="navbar-collapse">

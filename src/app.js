@@ -11,7 +11,7 @@ import {
     StarshipDetail,
 } from './components';
 import { SWApi } from './services';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 const App = () => {
     const swAPI = new SWApi();
@@ -23,13 +23,17 @@ const App = () => {
                     <Navigation />
                     <main className="main-content">
                         <RandomPlanet />
-                        <Route path='/people/:id?' component={PeoplePage} exact/>
-                        <Route path='/planets/:id?' component={PlanetPage} exact/>
-                        <Route path='/starships/' component={StarshipPage} exact/>
-                        <Route path='/starships/:id' render={({ match }) => {
-                            const { id } = match.params;
-                            return <StarshipDetail itemID={id}/>
-                        }}/>
+                        <Switch>
+                            <Route path='/people/:id?' component={PeoplePage} exact/>
+                            <Route path='/planets/:id?' component={PlanetPage} exact/>
+                            <Route path='/starships/' component={StarshipPage} exact/>
+                            <Route path='/starships/:id' render={({ match }) => {
+                                const { id } = match.params;
+                                return <StarshipDetail itemID={id}/>
+                            }}/>
+
+                            <Redirect to='/'/>
+                        </Switch>
                     </main>
                 </Router>
             </SwapiContext.Provider>
