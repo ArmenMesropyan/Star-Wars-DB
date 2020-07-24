@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from '..';
 
-const Navigation = () => (
+const Navigation = (props) => (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
         <div className="container">
             <div className="nav-logo">
@@ -21,7 +21,7 @@ const Navigation = () => (
                         <Link className="nav-link" to="/starships/">Starships</Link>
                     </li>
                 </ul>
-                <Search />
+                <Search {...props}/>
             </div>
         </div>
     </nav>

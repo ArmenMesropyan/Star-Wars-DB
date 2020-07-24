@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { withRouter } from 'react-router-dom';
 
-const Search = () => {
+const Search = ({ getData, placeholder, history }) => {
+    const searchInput = useRef(null);
+    const onFormSubmit = async(e) => {
+        try {
+            e.preventDefault();
+            const { value } = searchInput.current;
+            const { id } = await getData(value);
+            history.push(id);
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
     return (
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" />
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <form className="form-inline my-2 my-lg-0" onSubmit={onFormSubmit}>
+            <input 
+                className="form-control mr-sm-2"
+                type="text"
+                placeholder={placeholder}
+                ref={searchInput}
+            />
+            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     )
 }
 
-export default Search;
+export default withRouter(Search);

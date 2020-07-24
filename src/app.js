@@ -1,7 +1,9 @@
 import React from 'react';
 import './app.css';
 import { 
-    Navigation,
+    PlanetNavigation,
+    PeopleNavigation,
+    StarshipNavigation,
     RandomPlanet,
     PeoplePage,
     PlanetPage,
@@ -20,7 +22,7 @@ const App = () => {
         <ErrorBoundry>
             <SwapiContext.Provider value={swAPI}>
                 <Router>
-                    <Navigation />
+                    <PlanetNavigation />
                     <main className="main-content">
                         <RandomPlanet />
                         <Switch>

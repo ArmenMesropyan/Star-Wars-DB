@@ -10,7 +10,8 @@ export { default as ErrorBoundry } from './error-boundry';
 export { withData, withSwapiAPI } from './hoc-helpers';
 export { 
     PlanetList, PeopleList, StarshipList, 
-    PlanetDetail, PeopleDetail, StarshipDetail 
+    PlanetDetail, PeopleDetail, StarshipDetail,
+    PlanetNavigation, StarshipNavigation, PeopleNavigation
 } from './sw-components';
 export { SwapiContext } from './swapi-context';
 export { PeoplePage, PlanetPage, StarshipPage } from './pages';

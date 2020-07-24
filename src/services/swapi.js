@@ -41,6 +41,24 @@ class SWApi {
         return { id: this._getID(starship.url), ...starship };
     }
 
+    getStarshipByQuery = async(query = '') => {
+        const { results: [starship] } = await this.fetchData(`/starships/?search=${query}`);
+        if (!starship) return Promise.reject({ error: 'Not Found' }); 
+        return { id: this._getID(starship.url), ...starship };
+    }
+
+    getPersonByQuery = async(query = '') => {
+        const { results: [person] } = await this.fetchData(`/characters/?search=${query}`);
+        if (!person) return Promise.reject({ error: 'Not Found' }); 
+        return { id: this._getID(person.url), ...person };
+    }
+
+    getPlanetByQuery = async(query = '') => {
+        const { results: [planet] } = await this.fetchData(`/planets/?search=${query}`);
+        if (!planet) return Promise.reject({ error: 'Not Found' }); 
+        return { id: this._getID(planet.url), ...planet };
+    }
+
     getImage(type, id) {
         return `https://starwars-visualguide.com/assets/img/${type}/${id}.jpg`
     }
