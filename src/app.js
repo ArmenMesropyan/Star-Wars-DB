@@ -22,7 +22,7 @@ const App = () => {
         <ErrorBoundry>
             <SwapiContext.Provider value={swAPI}>
                 <Router>
-                    <PlanetNavigation />
+                    <StarshipNavigation />
                     <main className="main-content">
                         <RandomPlanet />
                         <Switch>

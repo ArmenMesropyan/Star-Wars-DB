@@ -43,18 +43,21 @@ class SWApi {
 
     getStarshipByQuery = async(query = '') => {
         const { results: [starship] } = await this.fetchData(`/starships/?search=${query}`);
+        console.log('starship: ', starship);
         if (!starship) return Promise.reject({ error: 'Not Found' }); 
         return { id: this._getID(starship.url), ...starship };
     }
 
     getPersonByQuery = async(query = '') => {
-        const { results: [person] } = await this.fetchData(`/characters/?search=${query}`);
+        const { results: [person] } = await this.fetchData(`/people/?search=${query}`);
+        console.log('person: ', person);
         if (!person) return Promise.reject({ error: 'Not Found' }); 
         return { id: this._getID(person.url), ...person };
     }
 
     getPlanetByQuery = async(query = '') => {
         const { results: [planet] } = await this.fetchData(`/planets/?search=${query}`);
+        console.log('planet: ', planet);
         if (!planet) return Promise.reject({ error: 'Not Found' }); 
         return { id: this._getID(planet.url), ...planet };
     }

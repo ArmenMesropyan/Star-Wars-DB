@@ -1,6 +1,5 @@
 import React from 'react';
 import { ListItem, Record, ErrorBoundry, withSwapiAPI } from '..';
-console.log('withSwapiAPI: ', withSwapiAPI);
 
 const PlanetDetail = (props) => (
     <ErrorBoundry>
