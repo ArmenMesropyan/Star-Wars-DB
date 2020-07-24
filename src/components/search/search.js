@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 
 const Search = ({ getData, placeholder, history }) => {
-console.log('getData: ', getData);
     const searchInput = useRef(null);
     const form = useRef(null);
     const onFormSubmit = async(e) => {

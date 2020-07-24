@@ -22,7 +22,9 @@ const App = () => {
         <ErrorBoundry>
             <SwapiContext.Provider value={swAPI}>
                 <Router>
-                    <StarshipNavigation />
+                    <Route path='/people/:id?' component={PeopleNavigation} />
+                    <Route path='/planets/:id?' component={PlanetNavigation} />
+                    <Route path='/starships/:id?' component={StarshipNavigation} />
                     <main className="main-content">
                         <RandomPlanet />
                         <Switch>
@@ -36,7 +38,7 @@ const App = () => {
                                 return <StarshipDetail itemID={id}/>
                             }}/>
 
-                            <Redirect to='/'/>
+                            <Redirect to='/people'/>
                         </Switch>
                     </main>
                 </Router>
