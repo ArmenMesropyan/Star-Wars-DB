@@ -12,20 +12,22 @@ const Search = ({ getData, placeholder, history }) => {
             history.push(id);
             form.current.reset();
         } catch (error) {
-            console.log(error);
+            window.M.toast({html: error})
         }
         
     }
     return (
-        <form className="form-inline my-2 my-lg-0" onSubmit={onFormSubmit} ref={form}>
-            <input 
-                className="form-control mr-sm-2"
-                type="text"
-                placeholder={placeholder}
-                ref={searchInput}
-            />
-            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <>
+            <form className="form-inline my-2 my-lg-0" onSubmit={onFormSubmit} ref={form}>
+                <input 
+                    className="form-control mr-sm-2"
+                    type="text"
+                    placeholder={placeholder}
+                    ref={searchInput}
+                />
+                <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </>
     )
 }
 

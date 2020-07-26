@@ -38,7 +38,7 @@ const App = () => {
                                 return <StarshipDetail itemID={id}/>
                             }}/>
 
-                            <Redirect to='/people'/>
+                            <Redirect to='/people/'/>
                         </Switch>
                     </main>
                 </Router>

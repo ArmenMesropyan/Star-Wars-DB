@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Search } from '..';
+import { Search, ErrorBoundry } from '..';
 
 const Navigation = (props) => {
     const links = [
